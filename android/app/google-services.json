@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "599102933375",
+    "project_id": "fir-crewbrew",
+    "storage_bucket": "fir-crewbrew.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599102933375:android:a91bb702f91cc352cbf24a",
+        "android_client_info": {
+          "package_name": "com.example.firebase_crew_brew"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599102933375-m8np3qe09lsu2ma5kvtj2p04pao0c014.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv09ErAibaahFg2Dxuk56YiZ3QZnLjy6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599102933375-m8np3qe09lsu2ma5kvtj2p04pao0c014.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
