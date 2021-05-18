@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_crew_brew/modal/user.dart';
-import 'package:flutter/material.dart';
 
 class AuthMethod {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -22,6 +21,7 @@ class AuthMethod {
     try {
       UserCredential userDetails = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
       return _userFromFireBase(userDetails.user);
     } catch (e) {
       print(e.toString());

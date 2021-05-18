@@ -1,5 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crew_brew/screens/chatRooms.dart';
 import 'package:firebase_crew_brew/services/auth.dart';
+import 'package:firebase_crew_brew/services/database.dart';
 import 'package:firebase_crew_brew/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import '../widgets/constants.dart';
@@ -16,15 +17,24 @@ class _SignupState extends State<Signup> {
   TextEditingController passwordController = new TextEditingController();
   bool isLoading = false;
   AuthMethod authMethod = new AuthMethod();
+  DataBaseMethods dataBaseMethods = new DataBaseMethods();
+
   void signMeUp() {
     if (formKey.currentState.validate()) {
+      authMethod
+          .signUpWithEmailAndPassword(
+              emailController.text, passwordController.text)
+          .then((value) => print(value));
+      Map<String, String> dataMap = {
+        "email": emailController.text,
+        "name": userNameController.text,
+      };
+      dataBaseMethods.uploadUserInfo(dataMap);
       setState(() {
         isLoading = true;
       });
-      authMethod
-          .signInWithEmailAndPassword(
-              emailController.text, passwordController.text)
-          .then((value) => print(value));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => ChatRoom()));
     }
   }
 
@@ -33,9 +43,7 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       appBar: appBarMain(context),
       body: isLoading
-          ? Container(
-              child: Center(child: CircularProgressIndicator()),
-            )
+          ? Center(child: CircularProgressIndicator())
           : Container(
               padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 20),
               alignment: Alignment.bottomCenter,
@@ -64,7 +72,7 @@ class _SignupState extends State<Signup> {
                         ),
                         TextFormField(
                           validator: (val) {
-                            return val.length < 6 && val.length > 20
+                            return val.length < 6 || val.length > 20
                                 ? "Password should be between 4 and 20 characters long."
                                 : null;
                           },
@@ -137,11 +145,16 @@ class _SignupState extends State<Signup> {
                         "Already have an account?",
                         style: ktextStyle().copyWith(fontSize: 15.0),
                       ),
-                      Text(
-                        "Log In",
-                        style: ktextStyle().copyWith(
-                            fontSize: 15.0,
-                            decoration: TextDecoration.underline),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          "Log In",
+                          style: ktextStyle().copyWith(
+                              fontSize: 15.0,
+                              decoration: TextDecoration.underline),
+                        ),
                       )
                     ],
                   ),

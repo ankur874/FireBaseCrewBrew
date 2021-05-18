@@ -1,3 +1,4 @@
+import 'package:firebase_crew_brew/screens/signUp.dart';
 import 'package:firebase_crew_brew/widgets/appbar.dart';
 import 'package:firebase_crew_brew/widgets/constants.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: appBarMain(context),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0 ),
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
         alignment: Alignment.bottomCenter,
         child: ListView(
           shrinkWrap: true,
@@ -87,10 +88,15 @@ class _SignInState extends State<SignIn> {
                   "Don't have an account?",
                   style: ktextStyle().copyWith(fontSize: 15.0),
                 ),
-                Text(
-                  "Register now",
-                  style: ktextStyle().copyWith(
-                      fontSize: 15.0, decoration: TextDecoration.underline),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>Signup()));
+                  },
+                  child: Text(
+                    "Register now",
+                    style: ktextStyle().copyWith(
+                        fontSize: 15.0, decoration: TextDecoration.underline),
+                  ),
                 )
               ],
             ),
