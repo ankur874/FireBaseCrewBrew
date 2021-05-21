@@ -12,14 +12,14 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   final formKey = GlobalKey<FormState>();
+
   TextEditingController userNameController = new TextEditingController();
   TextEditingController emailController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
+  DataBaseMethods dataBaseMethods = new DataBaseMethods();
   bool isLoading = false;
   AuthMethod authMethod = new AuthMethod();
-  DataBaseMethods dataBaseMethods = new DataBaseMethods();
-
-  void signMeUp() {
+  signMeUp() {
     if (formKey.currentState.validate()) {
       authMethod
           .signUpWithEmailAndPassword(
